@@ -1,23 +1,24 @@
 class Solution {
     public int mySqrt(int x) {
-
-        if (x < 2) {
+        if(x<2){
             return x;
         }
-
-        for (int i = 1; i <= x; i++) {
-
-            long square = (long) i * i;
-
-            if (square == x) {
-                return i;
+       int start=1;
+        int end=x/2;
+        while(start<=end){
+            int mid = start +(end-start)/2;
+            long square = (long) mid * mid;
+            if(square ==x)
+            {
+                return mid;
             }
-
-            if (square > x) {
-                return i - 1;
+            else if(square>x){
+                end= mid-1;
+            }
+            else if (square<x){
+                start=mid+1;
             }
         }
-return 0;
+        return end;
     }
 }
-
