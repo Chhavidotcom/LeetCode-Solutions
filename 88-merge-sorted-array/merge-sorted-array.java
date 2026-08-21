@@ -1,28 +1,28 @@
 class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
-
-        int i = m - 1;       // nums1 ka last actual element
-        int j = n - 1;       // nums2 ka last element
-        int k = m + n - 1;   // nums1 ki last position
-
-        while (i >= 0 && j >= 0) {
-
-            if (nums1[i] > nums2[j]) {
-                nums1[k] = nums1[i];
-                i--;
-            } else {
-                nums1[k] = nums2[j];
-                j--;
-            }
-
-            k--;
+     int[] merged = new int[m+n];
+     int index1= 0;
+     int index2= 0;
+     int x=0;   
+     while(index1<m && index2<n){
+        if(nums1[index1]<=nums2[index2]){
+            merged[x++]= nums1[index1++];
+        }
+        else{
+             merged[x++]= nums2[index2++];
         }
 
-        // Agar nums2 mein elements bach gaye
-        while (j >= 0) {
-            nums1[k] = nums2[j];
-            j--;
-            k--;
-        }
+     }
+     while(index1<m){
+         merged[x++]= nums1[index1++];
+     }
+     while(index2<n){
+         merged[x++]= nums2[index2++];
+     }
+
+     for(int i =0,j=0;i<merged.length;i++,j++){
+        nums1[j]=merged[i];
+     }
+     
     }
 }
