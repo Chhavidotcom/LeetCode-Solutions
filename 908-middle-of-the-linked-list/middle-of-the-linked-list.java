@@ -20,7 +20,7 @@ while(temp != null) {
 }
 
     ListNode temp2 = head;
-    for(int i =0;i<count/2 && temp2!=null ;i++){
+    for(int i =0;i<count/2;i++){
         temp2=temp2.next;
     }
 
