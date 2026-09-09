@@ -1,17 +1,34 @@
 class Solution {
     public int subsetXORSum(int[] nums) {
-        return solve(nums, 0, 0);
-    }
+        
+    List<List<Integer>> ans = new ArrayList<>();
+    List<Integer> curr = new ArrayList<>();
+    helper(nums,0,curr,ans);
+        int sum = 0;
 
-    int solve(int[] nums, int index, int xor) {
-        if (index == nums.length) {
-            return xor;
+        for (List<Integer> list : ans) {
+            int xor = 0;
+
+            for (int num : list) {
+                xor = xor ^ num;
+            }
+
+            sum += xor;
         }
 
-        int take = solve(nums, index + 1, xor ^ nums[index]);
+        return sum;
+    }
+ 
+    public void helper(int[] nums, int i, List<Integer> curr,List<List<Integer>> ans ) {
 
-        int notTake = solve(nums, index + 1, xor);
+        if (i >= nums.length) {
+            ans.add(new ArrayList<>(curr));
+            return;
+        }
 
-        return take + notTake;
+        curr.add(nums[i]);
+        helper(nums,i+1,curr,ans);
+        curr.remove(curr.size()-1);
+        helper(nums,i+1,curr,ans);
     }
 }
