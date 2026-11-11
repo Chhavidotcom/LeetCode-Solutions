@@ -1,15 +1,14 @@
 class Solution {
     public boolean checkIfExist(int[] arr) {
+
         HashMap<Integer,Integer>map=new HashMap<>();
         for(int i=0;i<arr.length;i++){
-            map.put(arr[i],i);
-        }
-        for(int j =0;j<arr.length;j++){
-            
-         if (map.containsKey(2 * arr[j]) && map.get(2 * arr[j]) != j) {
-    return true;
+            if((map.containsKey(2*arr[i])) || (arr[i] % 2 == 0 && map.containsKey(arr[i] / 2)))
+            {return true;}
+else{
+    map.put(arr[i],i);
 }
-        }
-        return false;
+        
     }
-}
+    return false;
+}}
